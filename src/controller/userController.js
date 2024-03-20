@@ -23,7 +23,7 @@ const readFunc = async (req,res) => {
   } catch (e) {
     console.log(e);
     return res.status(500).json({
-      EM: 'error from server', //Error Message
+      EM: 'error from service', //Error Message
       EC: '-1', //Error Code
       DT: '', //Data
     })
@@ -35,7 +35,7 @@ const createFunc = (req,res) => {
   } catch (e) {
     console.log(e);
     return res.status(500).json({
-      EM: 'error from server', //Error Message
+      EM: 'error from service', //Error Message
       EC: '-1', //Error Code
       DT: '', //Data
     })
@@ -65,7 +65,7 @@ const deleteFunc = async (req,res) => {
   } catch (e) {
     console.log(e);
     return res.status(500).json({
-      EM: 'error from server', //Error Message
+      EM: 'error from service', //Error Message
       EC: '-1', //Error Code
       DT: '', //Data
     })
