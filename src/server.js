@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //test connection db
-connection();
+// connection();
 
 //init web routes
 initWebRoutes(app);
