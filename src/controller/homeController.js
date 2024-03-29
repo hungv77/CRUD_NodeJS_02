@@ -5,8 +5,9 @@ const handleHelloWorld = (req, res) => {
 };
 
 const handleUserPage = async (req, res) => {
+  //model => get data from database
+
   let userList = await userService.getUserList();
-  //await userService.deleteUser()
   return res.render("user.ejs", {userList});
 };
 
