@@ -2,6 +2,7 @@ import express from "express";
 import apiController from '../controller/apiController';
 import userController from '../controller/userController';
 import groupController from '../controller/groupController';
+import {checkUserJWT, checkUserPermission} from '../middleware/JWTAction';
 
 const router = express.Router();
 
@@ -10,20 +11,13 @@ const router = express.Router();
  * @param {*} app : express app
  */
 
-const testMiddleware = (req, res, next) => {
-  console.log("Calling a middleware");
-  if (true) {
-    return res.send("reject middleware")
-  }
-  next();
-}
-
 const initApiRoutes = (app) => {
   //path, handler 
   //rest API
   //GET (Read) / POST (Create) / PUT (Update) / DELETE
   
-  router.get("/test-api", apiController.testApi);
+  router.all('*', checkUserJWT, checkUserPermission,);
+
   router.post("/register", apiController.handleRegister);
   router.post("/login", apiController.handleLogin);
   
