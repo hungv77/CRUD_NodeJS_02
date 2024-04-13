@@ -46,7 +46,7 @@ const checkUserJWT = (req, res, next) => {
 
   if (cookies && cookies.jwt || tokenFromHeader) {
     let token = cookies && cookies.jwt ? cookies.jwt : tokenFromHeader;
-    console.log('cookies : ', cookies)
+    // console.log('cookies : ', cookies)
     let decoded = verifyToken(token);
     if (decoded) {
       req.user = decoded;
@@ -72,6 +72,8 @@ const checkUserPermission = (req, res, next) => {
   if (nonSecurePaths.includes(req.path) || req.path === "/account")
     return next();
 
+  console.log(req.path)
+
   if (req.user) {
     let email = req.user.email;
     let roles = req.user.groupWithRoles.Roles;
@@ -84,7 +86,7 @@ const checkUserPermission = (req, res, next) => {
         EM: "You don't have permission to access this resource :)",
       });
     }
-    let canAccess = roles.some((item) => item.url === currentUrl);
+    let canAccess = roles.some((item) => item.url === currentUrl || currentUrl.includes(item.url));
     if (canAccess === true) {
       next();
     } else {
